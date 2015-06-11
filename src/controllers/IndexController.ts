@@ -22,7 +22,9 @@ module elasticui.controllers {
             results: null,
             refresh: (softRefresh: boolean = true) => this.refresh(softRefresh),
             error: null,
-            autoLoad:true
+            autoLoad:true,
+            fields: null,
+            aggs: null
         };
 
         public loaded() {
@@ -70,6 +72,18 @@ module elasticui.controllers {
             if (combinedFilter != null) {
                 request.filter(combinedFilter);
             }
+
+            // added by sindicetech
+            if (this.indexVM.fields != null) {
+                request.fields(this.indexVM.fields)
+            }
+            if (this.indexVM.aggs != null) {
+                for(var i = 0; i < this.indexVM.aggs.length; i++ ) {
+                    request.agg(this.indexVM.aggs[i])
+                }
+            }
+            // sindicetech end
+
 
             if (this.indexVM.query != null) {
                 request.query(this.indexVM.query);

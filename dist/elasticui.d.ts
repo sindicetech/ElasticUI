@@ -154,13 +154,15 @@ declare module elasticui.controllers {
         loaded: boolean;
         loading: boolean;
         page: number;
-        index: string;
+        index: any;
         pageCount: number;
         pageSize: number;
         results: any;
         refresh: (softRefresh?: boolean) => void;
         error: any;
         autoLoad: boolean;
+        fields: any;
+        aggs: any;
     }
 }
 declare module elasticui.controllers {
